@@ -12,6 +12,10 @@
 //2. store the longest recurring cycle length, replace if bigger
 //3. identify a recurring cycle for any 1/d
 
+//solution inspired by following:
+//http://42studios.com/2013/07/reciprocal-cycles/
+//http://www.mathblog.dk/project-euler-26-find-the-value-of-d-1000-for-which-1d-contains-the-longest-recurring-cycle/
+
 //sieve of eratosthenes
 
 var bigInt = require('big-integer');
@@ -34,63 +38,46 @@ function sieve(limit){
 	return arr;
 }
 
+//function checks the number of cycles
+//for every prime number less than the limit
 function recordCycles(limit){
 
+	//check only the prime numbers
 	var arr = sieve(limit);
 
-	var longest_cycle = [1,1,1]; //d, cycle, length
+	var longest_cycle = 1; //cycle length
+	var d_with_most_cycles = 1; //initialize
 
-	for (var i=0; i < limit; i++){
+	//start at 3 because we only car for primes
+	for (var i=7; i < limit; i++){
+		//for any number which is prime...
 		if (arr[i] !=0){
-			if (cycle_length(arr[i])>longest_cycle){
-				longest_cycle[0] = arr[i];
-				longest_cycle[1] = cycle_length(arr[i])[0];
-				longest_cycle[2] = cycle_length(arr[i])[1];
+			//... if its cycles are bigger than current max,
+			// use that number as the current maximum
+
+			if (countCycles(arr[i])>longest_cycle){
+				longest_cycle = countCycles(arr[i]);
+				d_with_most_cycles = arr[i];
 			}
 		}
 	}
-	return longest_cycle;
+
+	return [longest_cycle,d_with_most_cycles];
 }
+//function accepts a number, and returns the number of cycles
+function countCycles(n){
 
-function cycle_length(d){
+	var cycles =1;
+	var remainder = 10 % n; //10 % 7 = 3
 
-	var arr =[];
-	//initialize
-	arr[0] = d;
-	arr[1] = ''; //cycle
-	arr[2] = 1;	//length of cycle
-
-	var i =1;
-
-		// Plan: subtract 1/d from ((1/d *10^i) % 1) 
-		//until ==0. Every time i increases, the cycle 
-		//length increaes
-		// Example:
-	   // 1/7 = .142857142857142857142857142857142857
- 			//    	1.42857142857142857142857142857142857
-    //       14.2857142857142857142857142857142857
-    //      142.857142857142857142857142857142857
-	   //    1428.57142857142857142857142857142857
-	   //   14285.7142857142857142857142857142857
-    //   142857.142857142857142857142857142857
-
-    		//naive way of checking, potentially
-    		//the precision will fail
-	while ( ( (1/d)*Math.pow(100,i) % 1 ) - (1/d)*Math.pow(10,i) == 0){	
-		i++;
+	//we know that 1 % n = 1, therefore when remainder =1
+	//then the cycle is starting all over again
+	while (remainder !=1){
+		remainder = 10*remainder % n;
+		cycles++;
 	}
-
-	arr[1] = (1/d).toFixed(20);
-	arr[2] = i;
-
-	//once done looping, return i;
-
-	return arr;
-
+	return cycles;
 }
 
-console.log(cycle_length(7));
-// console.log(cycle_length(9));
-// console.log(cycle_length(11));
-// console.log(cycle_length(13));
-// console.log(cycle_length(17));
+var solution = recordCycles(1000);
+console.log('Solution: %s. It has %s cycles', solution[1], solution[0]);
