@@ -49,9 +49,9 @@ function solveP29(a,b){
 	console.log("Time to generate: %s", generateTime -start); //note: 9 seconds. need to optimize
 
 	//sort the array
-	arr = arr.sort(function(a,b){return a-b}); //note: 2 seconds. need to optimize
+	arr = arr.sort(function(a,b){return a-b}); 
 	var sortTime = new Date().getTime();
-	console.log("Time to sort: %s", sortTime-generateTime);
+	console.log("Time to sort: %s", sortTime-generateTime); //note: 2 seconds. need to optimize
 
 	//count number of distinct terms
 	var distinct = 1;
@@ -61,7 +61,7 @@ function solveP29(a,b){
 		}
 	}
 
-	//reply with number of distinct
+	//reply with number of distinct terms
 	console.log('There are %s terms total and %s distinct terms', arr.length, distinct);
 
 	return arr;
