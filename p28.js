@@ -53,6 +53,19 @@
 //start recording the time for solution
 var start = new Date().getTime();
 
+function solveP28(limit){
+
+	//generates 1001X1001 size array so we can add
+	//diagonals. Limit is 1001 in problem
+	var arr = generateArray(limit);
+
+	//add the diagonals of the array
+ 	var sum = addDiagonals(arr);
+ 	console.log('Sum of diagonal:%s',sum);
+
+ 	return sum;
+}
+
 function generateArray(limit){
 	var arr = [];
 
@@ -172,11 +185,7 @@ function generateArray(limit){
  		arr[limit-1].pop(); 
  	}
 
- 	//we call a function to add the diagonals of the matrix
- 	var sum = addDiagonals(arr);
- 	console.log('Sum of diagonal:%s',sum);
-
-	return sum;
+	return arr;
 }
 
 function addDiagonals(arr){
@@ -201,8 +210,11 @@ function addDiagonals(arr){
 
 }
 
+
+
 //call the solution for 1001 elements 
-var arraySolution = generateArray(1001);
+// var arraySolution = generateArray(1001);
+var arraySolution = solveP28(1001);
 
 //end recording the time for solution
 var end = new Date().getTime();
