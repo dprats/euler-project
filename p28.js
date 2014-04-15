@@ -110,8 +110,7 @@ function generateArray(limit){
 		x++; //move to the right
 		arr[y][x] = previous + 1;		//add one to previous
 		slots_filled++;
-//fill out the matrix via spirals until the whole spiral is 
-//full
+//fill out the matrix via spirals until the whole spiral is full 
 	while(slots_filled <limit*limit){
 
 		
@@ -167,7 +166,7 @@ function generateArray(limit){
  //  [ 18, 5, 4, 3, 12 ],
  //  [ 17, 16, 15, 14, 13 ] ]
  // so we remove the last element: 26 in this case,
- //because it goes beyond limit X limit
+ //because it goes beyond limit X
 
  //check the boundaries array for any elements which 
  //should not be there. If present remove them:

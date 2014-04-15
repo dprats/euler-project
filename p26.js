@@ -18,8 +18,8 @@
 
 //sieve of eratosthenes
 
-var bigInt = require('big-integer');
-var Big = require('big.js');
+// var bigInt = require('big-integer');
+// var Big = require('big.js');
 
 function sieve(limit){
 
@@ -57,7 +57,7 @@ function recordCycles(limit){
 
 			if (countCycles(arr[i])>longest_cycle){
 				longest_cycle = countCycles(arr[i]);
-				d_with_most_cycles = arr[i;
+				d_with_most_cycles = arr[i];
 			}
 		}
 	}
