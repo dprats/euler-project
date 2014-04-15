@@ -62,17 +62,17 @@ function generateArray(limit){
 	for (var i =0; i < limit; i++){
 		arr.push([]);
 		for (var j =0; j < limit; j++){
-			arr[i].push(i);
+			arr[i].push(0);
 		}
 	}
 
 	//dummy array to better test
-	arr = [ [21,22,23,24,25],
-					[20,7,8,9,10],
-					[18,6,1,2,11],
-					[18,5,4,3,12],
-					[17,16,15,14,13]
-	];
+	// arr = [ [0,0,0,0,0],
+	// 				[0,0,0,0,0],
+	// 				[0,0,0,0,0],
+	// 				[0,0,0,0,0],
+	// 				[0,0,0,0,0]
+	// ];
 
 
 
@@ -85,56 +85,128 @@ function generateArray(limit){
 	//iterate over every number in the square array
 
 	var previous = arr[m][m];
-	var loop = 0;
-	var right = 1;
-	var down = 0;
-	var left = 0;
-	var up = 0;
+	var x =m;
+	var y =m;
 
-		//loop for every spiral
-		//there are (limit -1) spirals
-		for (var spiral =1; spiral < limit-1; spiral++){
-			//loop over each side of a spiral
-			//the length of each side depends on the
-			//spiral count
+	var slots_filled = 1; //first slot filled is [m][m]
 
+	
+
+	//kickstart the spiral
+		previous = arr[y][x];
+		x++; //move to the right
+		arr[y][x] = previous + 1;		//add one to previous
+		slots_filled++;
+//fill out the matrix via spirals until the whole spiral is 
+//full
+	while(slots_filled <limit*limit){
+
+		
+	//Down
+	//move down until character to left is 0
+	while(arr[y][x-1] !=0 && y < limit){
+		previous = arr[y][x];
+		y++; //move down
+		arr[y][x] = previous + 1; //add one to previous
+		slots_filled++;
+		// console.log("DOWN:arr[%s][%s]=%s and slots=%s",y,x,arr[y][x],slots_filled);
+	}
 			
 
-			//right
-			
-			while(right <=spiral){
-				arr[m+down-up][m+right-left] = arr[m+down-up][m+right-left -1] + 1;
-				right++;
-			}
-
-			//down
-			while(down <=spiral){
-				arr[m+down-up][m+right-left] = arr[m+down-up-1][m+right-left] +1;
-				down++;
-			}
-
-			//left
-			while(down <=spiral){
-				arr[m+down-up][m+right-left] = arr[m+down-up][m+right-left+1] +1;
-				left++;
-			}
-			//up
-			while(up <=spiral){
-				arr[m+down-up][m+right-left] = arr[m+down-up-1][m+right-left] +1;
-				up++;
-			}
-			
+	//Left
+	//move to the left as long until character up is 0
+	while (arr[y-1][x] !=0){
+		previous = arr[y][x];
+		x--; //move left
+		arr[y][x] = previous + 1;
+		slots_filled++;
+		// console.log("LEFT:arr[%s][%s]=%s and slots=%s",y,x,arr[y][x],slots_filled);
+	}
 				
-		}
+	//Up
+	//move up until character to right is 0
+	while (arr[y][x+1] !=0){
+		previous = arr[y][x];
+		y--; //move up
+		arr[y][x] = previous + 1;	
+		slots_filled++;	
+		// console.log("UP:arr[%s][%s]=%s and slots=%s",y,x,arr[y][x],slots_filled);
+	}
+
+	//Right
+	//move to the right until character down is 0
+	//AND we do not go beyond limit on the x-axis
+	while(arr[y+1][x] != 0 && x <limit){
+		previous = arr[y][x];
+		x++; //move to the right
+		arr[y][x] = previous + 1;		//add one to previous
+		slots_filled++;
+		// console.log("RIGHT:arr[%s][%s]=%s and slots=%s",y,x,arr[y][x],slots_filled);
+	}
+
+	}
+
+	//after the spiral above our result is:
+
+	// [ [ 21, 22, 23, 24, 25, 26 ],
+ //  [ 20, 7, 8, 9, 10 ],
+ //  [ 19, 6, 1, 2, 11 ],
+ //  [ 18, 5, 4, 3, 12 ],
+ //  [ 17, 16, 15, 14, 13 ] ]
+ // so we remove the last element: 26 in this case,
+ //because it goes beyond limit X limit
+
+ //check the boundaries array for any elements which 
+ //should not be there. If present remove them:
 
 
-	return arr;
+ //if top array is one digit too big
+ 	if (arr[0].length > limit){
+ 		//..remove top right element
+ 		arr[0].pop(); 
+ 	}
+
+ 	//if bottom array is one digit too big
+ 	if (arr[limit-1].length > limit){
+ 		//..remove top right element
+ 		arr[limit-1].pop(); 
+ 	}
+
+ 	//we call a function to add the diagonals of the matrix
+ 	var sum = addDiagonals(arr);
+ 	console.log('Sum of diagonal:%s',sum);
+
+	return sum;
 }
 
-//call the solution
-var arraySolution = generateArray(5);
-console.log(arraySolution);
+function addDiagonals(arr){
+
+	var limit = arr[0].length;
+	var sum =0;
+
+	//add top-right -> bottom-left diagonal
+	for (var i=0; i < limit; i++){
+		sum += arr[i][i];
+	}
+
+	//add top-left -> bottom-right diagonal
+	for (var j=1; j <=limit ; j++){
+		sum += arr[j-1][limit-j];
+	}
+
+	//since we added the middle number twice, we subtract it...
+	sum -=arr[ (limit-1)/2 ][ (limit-1)/2 ];
+
+	return sum;
+
+}
+
+//call the solution for 1001 elements 
+var arraySolution = generateArray(1001);
 
 //end recording the time for solution
 var end = new Date().getTime();
 console.log('Time to calculate: %s milliseconds', end-start);
+
+
+//the resulting solution was 160 milliseconds so no optimization
