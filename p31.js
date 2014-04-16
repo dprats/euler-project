@@ -77,11 +77,6 @@ function solveP31(){
 	return count;
 }
 
-
-// var x =[0,0,0,0,0,0,6,187];
-
-// multiply(x);
-
 solveP31();
 
 var end = new Date().getTime();
