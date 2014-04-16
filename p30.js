@@ -21,7 +21,7 @@
 //What is K?
 //We need an upper bound k
 //k of the form "xyz.." = x^5 + y^5 +z^5...
-//largest number for x^5 = 9^5 => 59045
+//largest number for x^5 = 9^5 => 59,045
 //9^5+9^5+9^5 = 177,147 which has more than 3 digits
 //9^5+9^5+9^5+9^5 = 236,196 which has more than 4 digits
 //9^5+9^5+9^5+9^5+9^5 = 295,245 which has more than 5 digits
