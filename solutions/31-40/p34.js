@@ -20,7 +20,7 @@
 	//1. check if any 1,2,3 and 4 digit number is curious (this is fast)
 	//2. Store the factorialized version of every number checked
 	//3. For 5,6,7,8 digit numbers do the following:
-	//	a) pick a 4-digit number  abcd between 1000 and 9999
+	//	a) pick a 4-digit number abcd between 1000 and 9999 stored above
 	//	b) calculate what conditions a potential w, wx, wxy, or wxyz
 	//	must meet in order for abcdw, abcdwx, abcdwxy, or abcdwxyz to be curious
 	//	
