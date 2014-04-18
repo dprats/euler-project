@@ -2,6 +2,9 @@
 
 //what is the largest prime of 600851475143
 
+var start = new Date().getTime();
+
+
 var largestPrime = 1;
 var num = 600851475143;
 var factorArr = [];
@@ -17,9 +20,6 @@ function divide_until_0(num, i){
 }
 
 
-// console.log(divide_until_0(1500,2));
-// console.log(num/1471);
-
 while (number_tested < num){
 	// console.log('number_tested: ' + number_tested +'for num:' +num);
 	if (num % number_tested == 0){
@@ -34,3 +34,6 @@ while (number_tested < num){
 }
 
 console.log(factorArr);
+
+var end = new Date().getTime();
+console.log("Time to compute:%s milliseconds", end - start);

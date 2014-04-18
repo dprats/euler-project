@@ -1,3 +1,5 @@
+var start = new Date().getTime();
+
 var fb = [];
 
 var x =3;
@@ -20,3 +22,6 @@ while (x < 4000000){
 }
 
 console.log(sum);
+
+var end = new Date().getTime();
+console.log("Time to compute:%s milliseconds", end - start);

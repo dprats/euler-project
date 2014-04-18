@@ -1,3 +1,5 @@
+//PROBLEM
+
 // The fraction 49/98 is a curious fraction since 49/98 = 4/8 
 // 30/50 = 3/5 is trivial examples.
 
@@ -9,6 +11,8 @@
 //find the value of the denominator.
 
 //Brute Force Method
+
+//SOLUTION
 
 var start = new Date().getTime();
 

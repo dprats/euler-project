@@ -5,6 +5,8 @@
 //Find the largest palindrome made from 
 //the product of two 3-digit numbers.
 
+var start = new Date().getTime();
+
 function findLargestP(){
 
 	var palindromes =[];
@@ -16,8 +18,6 @@ function findLargestP(){
 
 			if(checkPalindrome(i*j)){
 				palindromes.push(i*j);
-				console.log('(i,j) are ('+ i +',' + j+')');
-				console.log('palindrome is ' + i*j +'\n');
 			}
 		}
 	}
@@ -29,10 +29,9 @@ function checkPalindrome(num){
 
 	var original = num.toString();
 	var reversed = num.toString().split('').reverse().join('');//.splice(num.length/2, -1);
-	// console.log('Original: ' +original);
-	// console.log('Reversed: ' +reversed+'\n');
+	
 	if (original == reversed){
-		console.log(original + ' is a Palindrome!\n')
+		// console.log(original + ' is a Palindrome!\n')
 		return true;
 	}
 	return false;
@@ -46,4 +45,7 @@ var pal = findLargestP();
 var largestP = Math.max.apply(Math, pal);
 
 console.log(largestP);
+
+var end = new Date().getTime();
+console.log("Time to compute:%s milliseconds", end - start);
 
