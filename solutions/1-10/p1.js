@@ -1,21 +1,34 @@
+//PROBLEM
 //find all multiples of 3 or 5 under 1000
 //add them up
 
-//iterate 1 through 1000
+//OUTLINE TO SOLUTION
+// 1. iterate from 1 to 1000
+// 2. for all numbers, check if its is both divisible by 3 AND 5
 
-var sum =0;
+//SOLUTION
 
-for (var i = 1; i <1000; i++){
+//Starting the clock to time the function
+var start = new Date().getTime();
 
-	//if i is multiple of 3 add it
-	if (i % 3 === 0 || i % 5 === 0){
-		sum = sum +i;
-	}
-	//if i is multiple of 5 add it
+function solveP1(){
+
+	var sum =0;
+
+	for (var i = 1; i <1000; i++){
+		//if i is multiple of 3 add it
+		if (i % 3 === 0 || i % 5 === 0){
+			sum = sum +i;
+		}
+		//if i is multiple of 5 add it
+}
+	return console.log("sum:%s",sum);
 
 }
 
-console.log(sum);
-return sum;
+//CALL FUNCTION
+solveP1();
+var end = new Date().getTime();
+//solution took 14 milliseconds.
+console.log("Time to compute:%s milliseconds", end - start); 
 
-233168
