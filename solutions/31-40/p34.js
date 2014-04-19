@@ -3,7 +3,7 @@
 //Find the sum of all numbers equal to the sum of the 
 //factorial of their digits
 
-//Brute Force
+//Brute Force Attempy
 
 //1. Reduce the numberspace
 //2. generate sums of factorials i, and check if i is curios
@@ -18,7 +18,7 @@
 
 //Our strategy is the following:
 	//1. check if any 1,2,3 and 4 digit number is curious (this is fast)
-	//2. Store the factorialized version of every number checked
+	//2. Store the factorialized (a! + b! + c!  for digit abc ) version of every number checked
 	//3. For 5,6,7,8 digit numbers do the following:
 	//	a) pick a 4-digit number abcd between 1000 and 9999 stored above
 	//	b) calculate what conditions a potential w, wx, wxy, or wxyz
@@ -34,30 +34,23 @@ var start = new Date().getTime();
 //return an array s.t. for every number abcd upto 10k, we have
 //a! + b! + c! + d! - a -b - c - d
 function generateDigits(){
-
 	var arr =[];
-
 //we ony generate 1,2,3, and 4 digit numbers
 	for (var i=0; i < 10000; i++){
 		arr.push(factorialize(i));
 	}
-
 	return arr;
-
 }
 
 function factorial(i){
-
 	if (i ==0){
 		return 1;
 	}
-
 	return i*factorial(i-1);
 }
 
 //for any number abc, returns a! + b! + c!
 function factorialize(num){
-
 	var str = num.toString();
 	var sum = 0;
 
@@ -90,6 +83,7 @@ function solveP34(){
 	//generate an array with all the factorializations
 	//from 1 to 10k
 	var arr = generateDigits();
+
 
 	//check for all numbers upto 4 digits to see if they
 	//are curious
@@ -130,7 +124,7 @@ function solveP34(){
 			// b) that w < 10 so we have a 5-digit number abcdw
 			if (index != -1 && index <10){
 				var candidate_5_digit_number = j.toString()+index.toString();
-				if (curious(new_5_digit_number)){
+				if (curious(candidate_5_digit_number)){
 					curiousNumbers.push(j.toString()+index.toString());
 				}
 			}
@@ -175,12 +169,18 @@ function solveP34(){
 			}
 	}
 
-	return;
+	//add up the curious numbers
+	var sum = 0;
+	for (var k=0; k < curiousNumbers.length; k++){
+		sum += +curiousNumbers[k];
+	}
 
+
+	return sum;
 }
 
 var curiousNumbers =[];
-solveP34();
-console.log(curiousNumbers);
+console.log(solveP34());
+
 var end = new Date().getTime();
-console.log("Time to compute:%s milliseconds", end - start); //solution took 861 milliseconds
+console.log("Time to compute:%s milliseconds", end - start); //solution took 800 milliseconds
