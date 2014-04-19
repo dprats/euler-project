@@ -24,6 +24,23 @@ var start = new Date().getTime();
 //array to store all our prime numbers
 var primes =[];
 
+function solveP35(limit){
+
+	//generate all the primes below one million
+	primes = sieve(limit);
+	var count =0;
+
+	//iterate over every prime
+	for (var i=2; i <primes.length; i++){
+		//if a number is circular, add one
+		if (primes[i] != 0 && circular(primes[i])){
+			count++;
+		}
+	}
+	console.log("There are %s circular primes", count);
+	return count;
+}
+
 //return an array with all prime numbers below LIMIT
 //This uses the Sieve of Eratosthenenes
 
@@ -77,7 +94,6 @@ function circular(num){
 	//so we do have to recalculate it.
 	//This will speed up our calculations
 	primes = removeNonCircular(primes,+str);
-
 	return true;
 }
 
@@ -100,24 +116,7 @@ function removeNonCircular(arr,index){
 	return arr;
 }
 
-
-function solveP35(limit){
-
-	//generate all the primes below one million
-	primes = sieve(limit);
-	var count =0;
-
-	//iterate over every prime
-	for (var i=2; i <primes.length; i++){
-		//if a number is circular, add one
-		if (primes[i] != 0 && circular(primes[i])){
-			count++;
-		}
-	}
-
-	console.log("There are %s circular primes", count);
-	return count;
-}
+//CALLING THE SOLUTION FUNCTION
 
 //call function to solve the problem
 solveP35(1000000);
