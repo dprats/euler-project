@@ -67,8 +67,6 @@ function circular(num){
 	
 	//so long as str is prime, iterate over a number's circular 
 	//rotations to see if they are prime
-
-
 	for (var i=0; i< str.length;i++){	
 			//store first digit from the current number
 		var temp = str[0];
