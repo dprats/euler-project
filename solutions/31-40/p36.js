@@ -24,7 +24,6 @@ var start = new Date().getTime();
 
 function solveP36(){
 
-	var pal =[];
 	var sum =0;
 
 	//To generate 1,2,3,4,5,6-digit palindromes (numbers <1MM) we
@@ -70,5 +69,5 @@ function palindrome(str){
 solveP36();
 
 var end = new Date().getTime();
-//solution took 25 milliseconds.
+//solution took 24 milliseconds.
 console.log("Time to compute:%s milliseconds", end - start); 
