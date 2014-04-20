@@ -4,16 +4,16 @@
 
 // Find the sum of all numbers < 1MM which are palindromic in base 10 and base 2.
 
-// Palindromic will not include leading zero's.
+// Palindromic number will not include leading zero's.
 
 //OUTLINE TO SOLUTION
 
-// Brute Force
-// 1. Generate all base 10 palindromes <1MM
+// 
+// 1. Generate all base 10 palindromes < 1MM
 //		- we generate all the palindromes by adding a tail
 //			to every number abc s.t. abc + cba = abccba or abc + ca = abccba
 //		- by generating palindromes, we only check first 1000 numbers
-// 2. Check if any generated palinfroms is a palindrome in base 2
+// 2. Check if any generated palindromes is a palindrome in base 2
 // 3. If its is base 2, add it to the sum
 
 
