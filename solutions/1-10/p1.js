@@ -14,13 +14,12 @@ var start = new Date().getTime();
 function solveP1(){
 
 	var sum =0;
-
 	for (var i = 1; i <1000; i++){
 		//if i is multiple of 3 add it
-		if (i % 3 === 0 || i % 5 === 0){
+		if (i % 3 === 0 && i %5 ==0){
 			sum = sum +i;
 		}
-		//if i is multiple of 5 add it
+		
 }
 	return console.log("sum:%s",sum);
 
