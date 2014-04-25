@@ -18,7 +18,7 @@
 //It is also much faster to check all n=7 before generating n=4
 //pandigital.
 
-//I use an algorithm for creating pandigitals which I found here:
+//For generating pandigitals, I use an algorithm for creating permutations which I found here:
 //http://stackoverflow.com/questions/9960908/permutations-in-javascript
 
 
@@ -42,13 +42,11 @@ var start = new Date().getTime();
 
 function solveP41(){
 
-	var limit = 76543321;
-
 	//create an array of all 7-digit permutations
-	//the sort the array from largest to smallest
+	//then sort the array from largest to smallest
 	var n7 = nPandigital(7);
 	
-	//check all the n=7 digit primes to see if any is pandigital
+	//check all the n=7 digit pandigitals to see if any is pandigital
 	for (var i = n7.length-1; i>0; i--){
 		var number = (n7[i]);
 		if (isPrime(number)){
@@ -58,10 +56,10 @@ function solveP41(){
 	}
 
 	//create an array of all 4-digit permutations
-	//the sort the array from largest to smallest
+	//then sort the array from largest to smallest
 	var n4 = nPandigital(4);
 
-	//check all the n=4 digit primes to see if any is pandigital
+	//check all the n=4 digit pandigitals to see if any is pandigital
 	for (var i = n4.length-1; i>0; i--){
 		var number = (n4[i]);
 		if (isPrime(number)){
@@ -77,8 +75,8 @@ function solveP41(){
 // a) isPrime = checks if a number is prime
 // b) permute = generates panditial permuntations of array [1,2,3...n]
 // c) isPandigital = generates an array of every n-digit pandigital
-//									permutation and ranks the array from smallest to largest.
-//									By ranking it, it makes finding the "largest" easier.								
+//		permutation and ranks the array from smallest to largest.
+//		By ranking it, it makes finding the "largest" easier.								
 
 //returns true if a number n is prime
 function isPrime(n){
